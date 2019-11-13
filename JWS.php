@@ -40,7 +40,7 @@ class JWS implements JWT
     /**
      * JWS constructor.
      */
-    private function __construct(?string $payload, ?string $encodedPayload = null, bool $isPayloadDetached = false)
+    private function __construct(string $payload, string $encodedPayload = null, bool $isPayloadDetached = false)
     {
         $this->payload = $payload;
         $this->encodedPayload = $encodedPayload;
@@ -52,12 +52,12 @@ class JWS implements JWT
      *
      * @return JWS
      */
-    public static function create(?string $payload, ?string $encodedPayload = null, bool $isPayloadDetached = false): self
+    public static function create(string $payload, string $encodedPayload = null, bool $isPayloadDetached = false): self
     {
         return new self($payload, $encodedPayload, $isPayloadDetached);
     }
 
-    public function getPayload(): ?string
+    public function getPayload(): string
     {
         return $this->payload;
     }
@@ -74,7 +74,7 @@ class JWS implements JWT
      * Returns the Base64Url encoded payload.
      * If the payload is detached, this method returns null.
      */
-    public function getEncodedPayload(): ?string
+    public function getEncodedPayload(): string
     {
         if (true === $this->isPayloadDetached()) {
             return null;
@@ -113,7 +113,7 @@ class JWS implements JWT
      *
      * @return JWS
      */
-    public function addSignature(string $signature, array $protectedHeader, ?string $encodedProtectedHeader, array $header = []): self
+    public function addSignature(string $signature, array $protectedHeader, string $encodedProtectedHeader, array $header = []): self
     {
         $jws = clone $this;
         $jws->signatures[] = Signature::create($signature, $protectedHeader, $encodedProtectedHeader, $header);

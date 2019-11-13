@@ -19,7 +19,7 @@ use Jose\Component\Signature\JWS;
 
 final class CompactSerializer extends Serializer
 {
-    public const NAME = 'jws_compact';
+    const NAME = 'jws_compact';
 
     /**
      * @var JsonConverter
@@ -29,7 +29,7 @@ final class CompactSerializer extends Serializer
     /**
      * JSONFlattenedSerializer constructor.
      */
-    public function __construct(?JsonConverter $jsonConverter = null)
+    public function __construct(JsonConverter $jsonConverter = null)
     {
         $this->jsonConverter = $jsonConverter ?? new \Jose\Component\Core\Util\JsonConverter();
     }
@@ -44,7 +44,7 @@ final class CompactSerializer extends Serializer
         return self::NAME;
     }
 
-    public function serialize(JWS $jws, ?int $signatureIndex = null): string
+    public function serialize(JWS $jws, int $signatureIndex = null): string
     {
         if (null === $signatureIndex) {
             $signatureIndex = 0;
@@ -90,7 +90,7 @@ final class CompactSerializer extends Serializer
             $jws = $jws->addSignature($signature, $protectedHeader, $encodedProtectedHeader);
 
             return $jws;
-        } catch (\Error | \Exception $e) {
+        } catch (\Exception $e) {
             throw new \InvalidArgumentException('Unsupported input');
         }
     }

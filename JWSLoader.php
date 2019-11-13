@@ -38,7 +38,7 @@ class JWSLoader
     /**
      * JWSLoader constructor.
      */
-    public function __construct(JWSSerializerManager $serializerManager, JWSVerifier $jwsVerifier, ?HeaderCheckerManager $headerCheckerManager)
+    public function __construct(JWSSerializerManager $serializerManager, JWSVerifier $jwsVerifier, HeaderCheckerManager $headerCheckerManager)
     {
         $this->serializerManager = $serializerManager;
         $this->jwsVerifier = $jwsVerifier;
@@ -56,7 +56,7 @@ class JWSLoader
     /**
      * Returns the Header Checker Manager associated to the JWSLoader.
      */
-    public function getHeaderCheckerManager(): ?HeaderCheckerManager
+    public function getHeaderCheckerManager(): HeaderCheckerManager
     {
         return $this->headerCheckerManager;
     }
@@ -75,7 +75,7 @@ class JWSLoader
      *
      * @throws \Exception
      */
-    public function loadAndVerifyWithKey(string $token, JWK $key, ?int &$signature, ?string $payload = null): JWS
+    public function loadAndVerifyWithKey(string $token, JWK $key, int &$signature, string $payload = null): JWS
     {
         $keyset = new JWKSet([$key]);
 
@@ -88,7 +88,7 @@ class JWSLoader
      *
      * @throws \Exception
      */
-    public function loadAndVerifyWithKeySet(string $token, JWKSet $keyset, ?int &$signature, ?string $payload = null): JWS
+    public function loadAndVerifyWithKeySet(string $token, JWKSet $keyset, int &$signature, string $payload = null): JWS
     {
         try {
             $jws = $this->serializerManager->unserialize($token);
@@ -107,7 +107,7 @@ class JWSLoader
         throw new \Exception('Unable to load and verify the token.');
     }
 
-    private function processSignature(JWS $jws, JWKSet $keyset, int $signature, ?string $payload): bool
+    private function processSignature(JWS $jws, JWKSet $keyset, int $signature, string $payload): bool
     {
         try {
             if (null !== $this->headerCheckerManager) {

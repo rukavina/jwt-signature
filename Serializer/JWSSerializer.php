@@ -29,7 +29,7 @@ interface JWSSerializer
      *
      * @throws \Exception
      */
-    public function serialize(JWS $jws, ?int $signatureIndex = null): string;
+    public function serialize(JWS $jws, int $signatureIndex = null): string;
 
     /**
      * Loads data and return a JWS object.

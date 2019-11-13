@@ -49,7 +49,7 @@ class JWSVerifier
      *
      * @return bool true if the verification of the signature succeeded, else false
      */
-    public function verifyWithKey(JWS $jws, JWK $jwk, int $signature, ?string $detachedPayload = null): bool
+    public function verifyWithKey(JWS $jws, JWK $jwk, int $signature, string $detachedPayload = null): bool
     {
         $jwkset = new JWKSet([$jwk]);
 
@@ -66,7 +66,7 @@ class JWSVerifier
      *
      * @return bool true if the verification of the signature succeeded, else false
      */
-    public function verifyWithKeySet(JWS $jws, JWKSet $jwkset, int $signature, ?string $detachedPayload = null): bool
+    public function verifyWithKeySet(JWS $jws, JWKSet $jwkset, int $signature, string $detachedPayload = null): bool
     {
         $this->checkJWKSet($jwkset);
         $this->checkSignatures($jws);
@@ -77,7 +77,7 @@ class JWSVerifier
         return $this->verifySignature($jws, $jwkset, $signature, $detachedPayload);
     }
 
-    private function verifySignature(JWS $jws, JWKSet $jwkset, Signature $signature, ?string $detachedPayload = null): bool
+    private function verifySignature(JWS $jws, JWKSet $jwkset, Signature $signature, string $detachedPayload = null): bool
     {
         $input = $this->getInputToVerify($jws, $signature, $detachedPayload);
         foreach ($jwkset->all() as $jwk) {
@@ -101,7 +101,7 @@ class JWSVerifier
         return false;
     }
 
-    private function getInputToVerify(JWS $jws, Signature $signature, ?string $detachedPayload): string
+    private function getInputToVerify(JWS $jws, Signature $signature, string $detachedPayload): string
     {
         $encodedProtectedHeader = $signature->getEncodedProtectedHeader();
         if (!$signature->hasProtectedHeaderParameter('b64') || true === $signature->getProtectedHeaderParameter('b64')) {
@@ -133,7 +133,7 @@ class JWSVerifier
         }
     }
 
-    private function checkPayload(JWS $jws, ?string $detachedPayload = null)
+    private function checkPayload(JWS $jws, string $detachedPayload = null)
     {
         if (null !== $detachedPayload && !empty($jws->getPayload())) {
             throw new \InvalidArgumentException('A detached payload is set, but the JWS already has a payload.');

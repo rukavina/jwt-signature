@@ -19,7 +19,7 @@ use Jose\Component\Signature\JWS;
 
 final class JSONGeneralSerializer extends Serializer
 {
-    public const NAME = 'jws_json_general';
+    const NAME = 'jws_json_general';
 
     /**
      * @var \Jose\Component\Core\Util\JsonConverter
@@ -29,7 +29,7 @@ final class JSONGeneralSerializer extends Serializer
     /**
      * JSONFlattenedSerializer constructor.
      */
-    public function __construct(?JsonConverter $jsonConverter = null)
+    public function __construct(JsonConverter $jsonConverter = null)
     {
         $this->jsonConverter = $jsonConverter ?? new \Jose\Component\Core\Util\JsonConverter();
     }
@@ -44,7 +44,7 @@ final class JSONGeneralSerializer extends Serializer
         return self::NAME;
     }
 
-    public function serialize(JWS $jws, ?int $signatureIndex = null): string
+    public function serialize(JWS $jws, int $signatureIndex = null): string
     {
         if (0 === $jws->countSignatures()) {
             throw new \LogicException('No signature.');
@@ -124,7 +124,7 @@ final class JSONGeneralSerializer extends Serializer
         return $jws;
     }
 
-    private function processIsPayloadEncoded(?bool $isPayloadEncoded, array $protectedHeader): bool
+    private function processIsPayloadEncoded(bool $isPayloadEncoded, array $protectedHeader): bool
     {
         if (null === $isPayloadEncoded) {
             return self::isPayloadEncoded($protectedHeader);
@@ -145,7 +145,7 @@ final class JSONGeneralSerializer extends Serializer
         return [$encodedProtectedHeader, $protectedHeader, $header];
     }
 
-    private function processPayload(?string $rawPayload, ?bool $isPayloadEncoded): ?string
+    private function processPayload(string $rawPayload, bool $isPayloadEncoded): string
     {
         if (null === $rawPayload) {
             return null;

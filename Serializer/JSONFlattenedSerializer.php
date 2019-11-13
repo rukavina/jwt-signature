@@ -19,7 +19,7 @@ use Jose\Component\Signature\JWS;
 
 final class JSONFlattenedSerializer extends Serializer
 {
-    public const NAME = 'jws_json_flattened';
+    const NAME = 'jws_json_flattened';
 
     /**
      * @var JsonConverter|\Jose\Component\Core\Util\JsonConverter|null
@@ -29,7 +29,7 @@ final class JSONFlattenedSerializer extends Serializer
     /**
      * JSONFlattenedSerializer constructor.
      */
-    public function __construct(?JsonConverter $jsonConverter = null)
+    public function __construct(JsonConverter $jsonConverter = null)
     {
         $this->jsonConverter = $jsonConverter ?? new \Jose\Component\Core\Util\JsonConverter();
     }
@@ -44,7 +44,7 @@ final class JSONFlattenedSerializer extends Serializer
         return self::NAME;
     }
 
-    public function serialize(JWS $jws, ?int $signatureIndex = null): string
+    public function serialize(JWS $jws, int $signatureIndex = null): string
     {
         if (null === $signatureIndex) {
             $signatureIndex = 0;

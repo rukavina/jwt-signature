@@ -25,12 +25,12 @@ class RSA
     /**
      * Probabilistic Signature Scheme.
      */
-    public const SIGNATURE_PSS = 1;
+    const SIGNATURE_PSS = 1;
 
     /**
      * Use the PKCS#1.
      */
-    public const SIGNATURE_PKCS1 = 2;
+    const SIGNATURE_PKCS1 = 2;
 
     private static function convertIntegerToOctetString(BigInteger $x, int $xLen): string
     {

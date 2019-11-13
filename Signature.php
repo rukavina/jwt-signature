@@ -38,7 +38,7 @@ class Signature
     /**
      * Signature constructor.
      */
-    private function __construct(string $signature, array $protectedHeader, ?string $encodedProtectedHeader, array $header)
+    private function __construct(string $signature, array $protectedHeader, string $encodedProtectedHeader, array $header)
     {
         $this->protectedHeader = null === $encodedProtectedHeader ? [] : $protectedHeader;
         $this->encodedProtectedHeader = $encodedProtectedHeader;
@@ -53,7 +53,7 @@ class Signature
      *
      * @return Signature
      */
-    public static function create(string $signature, array $protectedHeader, ?string $encodedProtectedHeader, array $header = []): self
+    public static function create(string $signature, array $protectedHeader, string $encodedProtectedHeader, array $header = []): self
     {
         return new self($signature, $protectedHeader, $encodedProtectedHeader, $header);
     }
@@ -77,7 +77,7 @@ class Signature
     /**
      * The protected header associated with the signature.
      */
-    public function getEncodedProtectedHeader(): ?string
+    public function getEncodedProtectedHeader(): string
     {
         return $this->encodedProtectedHeader;
     }

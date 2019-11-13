@@ -36,7 +36,7 @@ class JWSLoaderFactory
     /**
      * JWSLoaderFactory constructor.
      */
-    public function __construct(JWSSerializerManagerFactory $jwsSerializerManagerFactory, JWSVerifierFactory $jwsVerifierFactory, ?HeaderCheckerManagerFactory $headerCheckerManagerFactory)
+    public function __construct(JWSSerializerManagerFactory $jwsSerializerManagerFactory, JWSVerifierFactory $jwsVerifierFactory, HeaderCheckerManagerFactory $headerCheckerManagerFactory)
     {
         $this->jwsSerializerManagerFactory = $jwsSerializerManagerFactory;
         $this->jwsVerifierFactory = $jwsVerifierFactory;
