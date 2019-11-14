@@ -14,6 +14,12 @@
             "homepage": "https://github.com/web-token/jwt-signature/contributors"
         }
     ],
+    "repositories": [
+        {
+            "type":"vcs",
+            "url":"https://github.com/rukavina/jwt-core"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Jose\\Component\\Signature\\":  ""
